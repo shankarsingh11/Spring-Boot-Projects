@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "org.in.info.name",
+    "type": "java.lang.String",
+    "description": "A description for 'org.in.info.name'"
+  },
+  {
+    "name": "org.in.info.location",
+    "type": "java.lang.String",
+    "description": "A description for 'org.in.info.location'"
+  },
+  {
+    "name": "org.in.info.size",
+    "type": "java.lang.String",
+    "description": "A description for 'org.in.info.size'"
+  },
+  {
+    "name": "org.in.info.pincode",
+    "type": "java.lang.String",
+    "description": "A description for 'org.in.info.pincode'"
+  }
+]}

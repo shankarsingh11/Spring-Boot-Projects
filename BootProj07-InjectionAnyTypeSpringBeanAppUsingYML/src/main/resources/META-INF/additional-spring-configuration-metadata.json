@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "item.dosa.price",
+    "type": "java.lang.String",
+    "description": "A description for 'item.dosa.price'"
+  },
+  {
+    "name": "item.idli.price",
+    "type": "java.lang.String",
+    "description": "A description for 'item.idli.price'"
+  },
+  {
+    "name": "item.vada.price",
+    "type": "java.lang.String",
+    "description": "A description for 'item.vada.price'"
+  },
+  {
+    "name": "empl.info.company.title",
+    "type": "java.lang.String",
+    "description": "A description for 'empl.info.company.title'"
+  },
+  {
+    "name": "empl.info.company.size",
+    "type": "java.lang.String",
+    "description": "A description for 'empl.info.company.size'"
+  },
+  {
+    "name": "empl.info.company.location",
+    "type": "java.lang.String",
+    "description": "A description for 'empl.info.company.location'"
+  }
+]}

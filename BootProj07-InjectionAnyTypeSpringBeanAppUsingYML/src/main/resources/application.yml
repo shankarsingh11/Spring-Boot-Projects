@@ -1,0 +1,28 @@
+# Conversion to YAML from Properties formar report
+# Warnings:
+# - The yaml file had comments which are lost in the refactoring!
+empl:
+  info:
+    name: shankar
+    id: 20
+    skills:
+    - java
+    - ML
+    - AI
+    - Cloud
+    team-member:
+    - shankar
+    - Gaurav
+    - kuldeep
+    phone-number:
+    - 9226286425
+    - 3088439847
+    - 3973645433
+    id-details:
+      aadharNo: 279137974914
+      panNo: 8340474
+      voterId: 923274
+    company:
+      title: PW
+      location: noida
+      size: 20
