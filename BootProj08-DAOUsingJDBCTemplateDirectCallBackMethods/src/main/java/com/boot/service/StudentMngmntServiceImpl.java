@@ -1,5 +1,8 @@
 package com.boot.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +38,32 @@ public class StudentMngmntServiceImpl implements IStudentMngmntService {
 //		 dto.setSname(bo.getSname());
 		
 		return dto;
+	}
+
+	@Override
+	public List<StudentDTO> fetchStudentByName(String name1, String name2) {
+		
+		List<StudentBO> studentBo = dao.getStudentByName(name1, name2);
+		
+		List<StudentDTO> studentDto = new ArrayList<StudentDTO>();
+		
+		studentBo.forEach(bo->{
+			
+			StudentDTO dto = new StudentDTO();
+			BeanUtils.copyProperties(studentBo, studentDto);
+			
+			if(bo.getAvg()>=40) {
+				dto.setGrade("A");
+			}else if(bo.getAvg()>=50) {
+				dto.setGrade("B");
+			}else {
+				dto.setGrade("C");
+			}
+			dto.setSrno(studentDto.size()+1);
+			studentDto.add(dto);
+		});
+		
+		return studentDto;
 	}
 
 }

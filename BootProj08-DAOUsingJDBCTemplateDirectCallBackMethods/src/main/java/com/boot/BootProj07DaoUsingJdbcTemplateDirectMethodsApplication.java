@@ -1,5 +1,7 @@
 package com.boot;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -20,6 +22,10 @@ public class BootProj07DaoUsingJdbcTemplateDirectMethodsApplication {
 		StudentDTO student = service.fetchStudentByNo(2);
 		
 		System.out.println(student);
+		
+		List<StudentDTO> listdto = service.fetchStudentByName("shankar", "Deepa");
+		
+		listdto.forEach(System.out::println);
 		
 		context.close();
 		

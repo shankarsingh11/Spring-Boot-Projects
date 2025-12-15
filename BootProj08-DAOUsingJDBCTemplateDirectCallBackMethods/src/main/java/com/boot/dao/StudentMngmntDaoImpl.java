@@ -2,6 +2,8 @@ package com.boot.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +16,8 @@ import com.boot.bo.StudentBO;
 public class StudentMngmntDaoImpl implements IStudentMngmntDAO {
 	
 	private static final String GET_STUDENT_BY_NO = "SELECT SID, SADDRESS,AVG,SNAME FROM STUDENT WHERE SID=?";
+
+	private static final String GET_STUDENT_BY_NAME = "Select SID,SADDRESS,AVG,SNAME FROM STUDENT WHERE SNAME in (?,?)";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -45,5 +49,27 @@ public class StudentMngmntDaoImpl implements IStudentMngmntDAO {
 	    }
 	}
 
+	@Override
+	public List<StudentBO> getStudentByName(String name1, String name2) {
+	 
+	 return jdbcTemplate.queryForObject(GET_STUDENT_BY_NAME, new RowMapper<List<StudentBO>>(){
+		 List<StudentBO> listBo =new ArrayList<StudentBO>();
+		@Override
+		public List<StudentBO> mapRow(ResultSet rs, int rowNum) throws SQLException {
+			System.out.println("StudentMngmntDaoImpl.getStudentByName(...).new RowMapper() {...}.mapRow()");
+			StudentBO bo = new StudentBO();
+			while(rs.next()) {
+				bo.setSid(rs.getInt(1));
+				bo.setSaddress(rs.getString(2));
+				bo.setAvg(rs.getFloat(3));
+				bo.setSname(rs.getString(4));
+			}
+			
+			 listBo.add(bo);
+			 return listBo;
+		}
+	 },name1,name2);
+			
+	}
 
 }
