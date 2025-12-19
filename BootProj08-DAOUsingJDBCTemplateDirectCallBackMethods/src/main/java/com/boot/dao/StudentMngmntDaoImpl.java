@@ -25,7 +25,6 @@ public class StudentMngmntDaoImpl implements IStudentMngmntDAO {
 	
 	@Override
 	public StudentBO getStudentByNo(int no) {
-		
 		StudentBO bo = null;
 		bo =  jdbcTemplate.queryForObject(GET_STUDENT_BY_NO, new StudentMapper(),no);
 		System.out.println(bo);
@@ -37,9 +36,8 @@ public class StudentMngmntDaoImpl implements IStudentMngmntDAO {
 	    @Override
 	    public StudentBO mapRow(ResultSet rs, int rowNum) throws SQLException {
 	        System.out.println("StudentMngmntDaoImpl.StudentMapper.mapRow()");
-
-	        StudentBO bo = new StudentBO();   
-
+	        StudentBO bo = new StudentBO(); 
+	        
 	        bo.setSid(rs.getInt(1));
 	        bo.setSaddress(rs.getString(2));
 	        bo.setAvg(rs.getFloat(3));
@@ -51,25 +49,23 @@ public class StudentMngmntDaoImpl implements IStudentMngmntDAO {
 
 	@Override
 	public List<StudentBO> getStudentByName(String name1, String name2) {
-	 
-	 return jdbcTemplate.queryForObject(GET_STUDENT_BY_NAME, new RowMapper<List<StudentBO>>(){
-		 List<StudentBO> listBo =new ArrayList<StudentBO>();
+	 return jdbcTemplate.query(GET_STUDENT_BY_NAME, new StudentRowMapper(),name1,name2);
+		
+	}
+	
+	private static final class  StudentRowMapper implements RowMapper<StudentBO>{
+		
 		@Override
-		public List<StudentBO> mapRow(ResultSet rs, int rowNum) throws SQLException {
-			System.out.println("StudentMngmntDaoImpl.getStudentByName(...).new RowMapper() {...}.mapRow()");
+		public StudentBO mapRow(ResultSet rs, int rowNum) throws SQLException {
+			System.out.println("StudentMngmntDaoImpl.StudentRowMapper.mapRow()");
 			StudentBO bo = new StudentBO();
-			while(rs.next()) {
-				bo.setSid(rs.getInt(1));
-				bo.setSaddress(rs.getString(2));
-				bo.setAvg(rs.getFloat(3));
-				bo.setSname(rs.getString(4));
-			}
-			
-			 listBo.add(bo);
-			 return listBo;
+			bo.setSid(rs.getInt(1));
+			bo.setSaddress(rs.getString(2));
+			bo.setAvg(rs.getFloat(3));
+			bo.setSname(rs.getString(4));
+			return bo;
 		}
-	 },name1,name2);
-			
+		
 	}
 
 }

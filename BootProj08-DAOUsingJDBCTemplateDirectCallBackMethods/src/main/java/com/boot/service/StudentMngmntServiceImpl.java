@@ -45,23 +45,24 @@ public class StudentMngmntServiceImpl implements IStudentMngmntService {
 		
 		List<StudentBO> studentBo = dao.getStudentByName(name1, name2);
 		
-		List<StudentDTO> studentDto = new ArrayList<StudentDTO>();
+		List<StudentDTO> studentDto = new ArrayList<>();
 		
-		studentBo.forEach(bo->{
+		for(int i=0;i<studentBo.size();i++){
 			
+			StudentBO bo = studentBo.get(i);
 			StudentDTO dto = new StudentDTO();
-			BeanUtils.copyProperties(studentBo, studentDto);
+			BeanUtils.copyProperties(bo, dto);
 			
-			if(bo.getAvg()>=40) {
+			if(bo.getAvg()>=40){
 				dto.setGrade("A");
-			}else if(bo.getAvg()>=50) {
+			}else if(bo.getAvg()>=50){
 				dto.setGrade("B");
 			}else {
 				dto.setGrade("C");
 			}
 			dto.setSrno(studentDto.size()+1);
 			studentDto.add(dto);
-		});
+		};
 		
 		return studentDto;
 	}
