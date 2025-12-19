@@ -23,6 +23,7 @@ public class BootProj07DaoUsingJdbcTemplateDirectMethodsApplication {
 		List<StudentDTO> listdto = service.fetchStudentByName("kuldeep", "Deep");
 		listdto.forEach(System.out::println);
 		
+		
 		context.close();
 		
 	}
